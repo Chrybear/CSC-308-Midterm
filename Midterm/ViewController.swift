@@ -40,6 +40,40 @@ class ViewController: UIViewController {
     
     //Outlets
     
+    //Outlet for main display
+    @IBOutlet weak var mainDisp: UIImageView!
+    
+    //Label for current course name
+    @IBOutlet weak var classTitle: UILabel!
+    
+    //Images for displaying challenge level
+    @IBOutlet var challengeImages: [UIImageView]!
+    
+    
+    
+    //Function for when a new course type is selected
+    @IBAction func changeType(_ sender: UISegmentedControl) {
+        
+        switch sender.selectedSegmentIndex {
+        case 0:
+            curCourses = mathRel
+        case 1:
+            curCourses = proRel
+        case 2:
+            curCourses = otherRel
+        default:
+            curCourses = mathRel
+        }
+        //Show the new course view
+        showCourses()
+    }
+    
+    //Function to display all information about the current course type when changed
+    func showCourses(){
+        
+    }
+    
+    
     //Function to load in the default classes
     func loadCourses(){
         //Add Math related class titles

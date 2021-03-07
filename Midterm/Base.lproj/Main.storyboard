@@ -24,6 +24,9 @@
                                     <segment title="Programming"/>
                                     <segment title="Others"/>
                                 </segments>
+                                <connections>
+                                    <action selector="changeType:" destination="BYZ-38-t0r" eventType="valueChanged" id="iqa-68-fDp"/>
+                                </connections>
                             </segmentedControl>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uhy-f0-Mdh">
                                 <rect key="frame" x="20" y="189" width="374" height="302"/>
@@ -68,6 +71,14 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <connections>
+                        <outlet property="classTitle" destination="YEf-C1-xMf" id="ZIp-X5-gVO"/>
+                        <outlet property="mainDisp" destination="uhy-f0-Mdh" id="vCl-kl-5CW"/>
+                        <outletCollection property="challengeImages" destination="d1o-Wb-lM3" collectionClass="NSMutableArray" id="ZHb-wQ-T5J"/>
+                        <outletCollection property="challengeImages" destination="Ze3-Ph-bt4" collectionClass="NSMutableArray" id="wwd-Nw-7it"/>
+                        <outletCollection property="challengeImages" destination="Cnc-Aq-sgj" collectionClass="NSMutableArray" id="W9N-2p-SAN"/>
+                        <outletCollection property="challengeImages" destination="8CC-u1-F29" collectionClass="NSMutableArray" id="eLb-1l-Jcz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
