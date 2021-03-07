@@ -52,6 +52,10 @@ class ViewController: UIViewController {
     //Images for displaying challenge level
     @IBOutlet var challengeImages: [UIImageView]!
     
+    //Button outlet to make nicer looking
+    @IBOutlet weak var nxtBtn: UIButton!
+    
+    
     
     
     //Function for when a new course type is selected
@@ -67,15 +71,30 @@ class ViewController: UIViewController {
         default:
             curCourses = mathRel //Default is math related since it is the first one in the segment
         }
+        //We have just changed subjects, so make the current class index 0
+        curClass = 0
         //Show the new course view
         showCourses()
     }
     
+    //Function for when the "Next" button is pressed
+    @IBAction func changeClass(_ sender: Any) {
+        //First, need to check if we're at the end of the class. If so, loop back to start
+        if curClass == curCourses.title.count-1{
+            //Again, all lists are the same lenght in the course object
+            curClass = -1 //This is so when we incriment it turns into 0, the start
+        }
+        //Increment to next class
+        curClass += 1
+        
+        //Show the next class
+        showCourses()
+        
+    }
+    
+    
     //Function to display all information about the current course type when changed
     func showCourses(){
-        //Update class index counter
-        curClass = 0
-        
         classTitle.text = curCourses.title[curClass] //Get title of class at index 0 in the curCourses
         mainDisp.image = curCourses.lectureImg[curClass] //Set the previous image of the course to the image at index 0 in curCourses
         //Update challenge rating; stars
@@ -85,13 +104,14 @@ class ViewController: UIViewController {
     //Function to draw the difficulty level of the current class in star images
     func drawStars(){
         //Loop through the current difficulty rating
-        for x in 0...curCourses.title.count-1{
-            // It doesn't matter which one we count, all the lists are the same length
+        for x in 0...curCourses.challenge[curClass]-1{
+            
             challengeImages[x].isHidden = false //Make the stars visible
         }
         
         //Make any remaining ones hidden
-        for y in curCourses.title.count...challengeImages.count-1{
+        for y in curCourses.challenge[curClass]..<challengeImages.count{
+            // It doesn't matter which one we count, all the lists are the same length
             challengeImages[y].isHidden = true //Make the stars hidden
         }
     }
@@ -147,6 +167,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         //Load in the courses
         loadCourses()
+        //Make button nice looking
+        nxtBtn.layer.cornerRadius = 20.0
         
     }
 
