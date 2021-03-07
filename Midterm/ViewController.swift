@@ -31,6 +31,9 @@ class ViewController: UIViewController {
     
     //Variables
     
+    //Current class index
+    var curClass = 0
+    
     //The course objects
     var mathRel = course()
     var proRel = course()
@@ -62,7 +65,7 @@ class ViewController: UIViewController {
         case 2:
             curCourses = otherRel
         default:
-            curCourses = mathRel
+            curCourses = mathRel //Default is math related since it is the first one in the segment
         }
         //Show the new course view
         showCourses()
@@ -70,11 +73,31 @@ class ViewController: UIViewController {
     
     //Function to display all information about the current course type when changed
     func showCourses(){
+        //Update class index counter
+        curClass = 0
         
+        classTitle.text = curCourses.title[curClass] //Get title of class at index 0 in the curCourses
+        mainDisp.image = curCourses.lectureImg[curClass] //Set the previous image of the course to the image at index 0 in curCourses
+        //Update challenge rating; stars
+        drawStars()
+    }
+    
+    //Function to draw the difficulty level of the current class in star images
+    func drawStars(){
+        //Loop through the current difficulty rating
+        for x in 0...curCourses.title.count-1{
+            // It doesn't matter which one we count, all the lists are the same length
+            challengeImages[x].isHidden = false //Make the stars visible
+        }
+        
+        //Make any remaining ones hidden
+        for y in curCourses.title.count...challengeImages.count-1{
+            challengeImages[y].isHidden = true //Make the stars hidden
+        }
     }
     
     
-    //Function to load in the default classes
+    //Function to load in the default class'
     func loadCourses(){
         //Add Math related class titles
         let mTitles = ["CSC 185", "CSC 195"]
@@ -105,6 +128,17 @@ class ViewController: UIViewController {
         
         //create the other courses
         otherRel = course(title: oTitles, lectureImg: oImg, challenge: oChal)
+        
+        //Since this function runs on start, also add star images to the UIImageviews
+        for x in challengeImages{
+            x.image = UIImage(named: "star.png")
+            x.isHidden = true //They should be initially hidden
+        }
+        
+        //Set Default courses
+        curCourses = mathRel
+        //Display the current courses
+        showCourses()
         
         
     }
