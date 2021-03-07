@@ -2,7 +2,9 @@
 //  ViewController.swift
 //  Midterm
 //
-//  Created by user186035 on 3/6/21.
+//  Author: Charles Ryan Barrett
+//  Date: 3/7/2021
+//  Description: Midterm project for CSC 308 at EKU. An iOS app that displays various computer science courses at EKU, along with a lecture slide from the class and an associated difficulty/challenge rating.
 //
 
 import UIKit
@@ -12,7 +14,7 @@ import UIKit
 class course{
     var title = [String]() //Value to hold each class' title
     var lectureImg = [UIImage]() //Images for each class
-    var challenge = [Int]() //Challenge level for each course
+    var challenge = [Int]() //Challenge level for each class
     
     //Constructor
     init(title: [String], lectureImg: [UIImage], challenge: [Int]) {
@@ -52,7 +54,7 @@ class ViewController: UIViewController {
     //Images for displaying challenge level
     @IBOutlet var challengeImages: [UIImageView]!
     
-    //Button outlet to make nicer looking
+    //Button outlet to make the button nicer looking
     @IBOutlet weak var nxtBtn: UIButton!
     
     
@@ -79,9 +81,9 @@ class ViewController: UIViewController {
     
     //Function for when the "Next" button is pressed
     @IBAction func changeClass(_ sender: Any) {
-        //First, need to check if we're at the end of the class. If so, loop back to start
+        //First, need to check if we're at the end of the classes. If so, loop back to start
         if curClass == curCourses.title.count-1{
-            //Again, all lists are the same lenght in the course object
+            //All lists are the same lenght in the course object
             curClass = -1 //This is so when we incriment it turns into 0, the start
         }
         //Increment to next class
@@ -95,8 +97,8 @@ class ViewController: UIViewController {
     
     //Function to display all information about the current course type when changed
     func showCourses(){
-        classTitle.text = curCourses.title[curClass] //Get title of class at index 0 in the curCourses
-        mainDisp.image = curCourses.lectureImg[curClass] //Set the previous image of the course to the image at index 0 in curCourses
+        classTitle.text = curCourses.title[curClass] //Get title of class at curClass index in the curCourses
+        mainDisp.image = curCourses.lectureImg[curClass] //Set the lecture preview image of the course to the image at curClass index in curCourses
         //Update challenge rating; stars
         drawStars()
     }
@@ -117,7 +119,7 @@ class ViewController: UIViewController {
     }
     
     
-    //Function to load in the default class'
+    //Function to load in the default courses
     func loadCourses(){
         //Add Math related class titles
         let mTitles = ["CSC 185", "CSC 195"]
